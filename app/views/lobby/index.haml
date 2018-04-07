@@ -1,4 +1,7 @@
 %h
   Werewolf Game Narrator
 %p
-  start!
+  = form_tag("/", method: "post") do
+    = label_tag("Start")
+    = text_field_tag(:player_name)
+    = submit_tag("Join")
