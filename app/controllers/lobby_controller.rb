@@ -1,6 +1,5 @@
 class LobbyController < ApplicationController
   def index
-    #ActionCable.server.broadcast "game_toki", {message: "somethingy"}
   end
 
   def join
