@@ -1,11 +1,13 @@
 class Game < ApplicationRecord
   has_many :players
 
-  PHASES = [TestPhase]
+  enum phases:  [
+                  Phase::TestPhase,
+                ].freeze
 
   def current_view(player)
-    current_phase = PHASES.first
-    player_role = VILLAGERS #TODO make player.role
-    "phases/#{current_phase.name.underscore}/default"
+    phase = Game.phases.key(current_phase)
+    phase_string = phase.name.demodulize.underscore
+    "game/phases/#{phase_string}/#{player.role || 'default'}"
   end
 end

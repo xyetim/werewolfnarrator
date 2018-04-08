@@ -20,11 +20,3 @@ $ ->
       received: (data) ->
         # Called when there is incoming data on the websocket for this channel
         console.log("WEBSOCKET: got message:" + data["type"])
-
-        # switch
-        #   when data["type"] == "players-status" then test()
-        #   else console.warn("Received unknown push message")
-
-
-test = ->
-  console.log("test")

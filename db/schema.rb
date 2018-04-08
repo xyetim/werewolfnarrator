@@ -13,12 +13,15 @@
 ActiveRecord::Schema.define(version: 20180405152840) do
 
   create_table "games", force: :cascade do |t|
+    t.integer "num_players"
+    t.integer "current_phase", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "players", force: :cascade do |t|
     t.string "name"
+    t.integer "role"
     t.integer "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

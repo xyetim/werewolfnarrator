@@ -1,3 +1,7 @@
 class Player < ApplicationRecord
-  #belongs_to :game # props not required
+  enum roles: [
+                :villager,
+                :werewolf,
+                :seer,
+              ].freeze
 end

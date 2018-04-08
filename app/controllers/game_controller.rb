@@ -3,10 +3,7 @@ class GameController < ApplicationController
     # Get running or make new Game
     @game = Game.where(id: 1).first #always game 1
     if !@game
-      @game = Game.create do |g|
-        puts "$$ Game created"
-        g.id = 1 #Static for now
-      end
+      @game = Game.create(num_players: 3) # TODO make seperate game creation screen
     end
 
     # Get existing player or create new player to the game
@@ -27,7 +24,5 @@ class GameController < ApplicationController
       #   }
       # end
     end
-
-    render @game.current_view(@player)
   end
 end
