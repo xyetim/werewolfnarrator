@@ -1,9 +1,14 @@
 -# Some data required by javascript
 #player_id{"player_id": @player.id}
 
-%div
-  _Static Header_
+.header
+  .wrapper
+    .title
+      Werewolves
 
-= render @game.current_view(@player)
+    .header_content
+.fake_header_border
 
-
+.wrapper
+  .phase_content
+    = render @game.current_view(@player), locals: {game: @game, player: @player}

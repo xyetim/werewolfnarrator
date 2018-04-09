@@ -19,4 +19,10 @@ $ ->
 
       received: (data) ->
         # Called when there is incoming data on the websocket for this channel
-        console.log("WEBSOCKET: got message:" + data["type"])
+        console.log("WEBSOCKET: got message " + data)
+
+        if data["phase_content"]
+          $(".phase_content").html(data["phase_content"])
+
+        if data["header_content"]
+          $(".header_content").html(data["header_content"])
