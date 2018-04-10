@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  has_many :players, after_add: :player_added
+  has_many :players, after_add: :player_added, dependent: :destroy
 
   enum phases:  [
                   Phase::ConnectionPhase,
@@ -33,6 +33,7 @@ class Game < ApplicationRecord
   def next_phase
     self[:current_phase] += 1
     update_players
+    save
   end
 
   # WARNING USING render IN THIS WAY IS VERY UNUSUAL. IT WOULD NORMALLY BE DONE IN THE CONTROLLER / CHANNEL
