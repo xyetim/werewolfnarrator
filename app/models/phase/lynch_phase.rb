@@ -1,0 +1,2 @@
+class Phase::LynchPhase
+end

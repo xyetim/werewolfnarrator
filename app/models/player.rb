@@ -3,5 +3,10 @@ class Player < ApplicationRecord
                 :villager,
                 :werewolf,
                 :seer,
+                :twin,
               ].freeze
+
+  def role
+    Player.roles.key(self[:role])
+  end
 end

@@ -1,0 +1,2 @@
+class Phase::WerewolvesPhase
+end
