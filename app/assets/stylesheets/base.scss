@@ -1,16 +1,21 @@
+$primary-color: #d34a3b;
+$darker-color: #90483d;
+$darker-highlight-color: #592d28;
+
 body {
-  background-color: #f9aeb0;
-  font-size: 3rem; // use fitty?
+  background-color: $primary-color;
 }
 
 .header {
-  background-color: #db2929;
-  height: 8%;
+  background-color: $darker-color;
+  height: fit-content;
 
   .wrapper {
     width: 90%;
+    margin: 0 auto;
 
     .title {
+      font-size: 12vw;
       width: fit-content;
       margin: auto;
     }
@@ -22,7 +27,7 @@ body {
 }
 
 .fake_header_border {
-  background-color: #8e1919;
+  background-color: $darker-highlight-color;
   height: 1%;
 }
 
@@ -30,8 +35,22 @@ body {
   width: 90%;
   margin: 0 auto;
 
-  .easy_center {
-    width: fit-content;
-    margin: 0 auto;
+  .phase_content {
+    font-size: 9vw;
+
+    * {
+      width: fit-content;
+      margin: 0 auto;
+    }
+  }
+}
+
+.button {
+  background-color: $darker-color;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5em;
+
+  &:active {
+    background-color: $darker-highlight-color;
   }
 }

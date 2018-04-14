@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180405152840) do
     t.string "name"
     t.integer "role"
     t.integer "game_id"
+    t.string "response"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_players_on_game_id"

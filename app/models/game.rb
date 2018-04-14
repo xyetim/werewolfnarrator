@@ -1,6 +1,8 @@
 class Game < ApplicationRecord
   has_many :players, after_add: :player_added, dependent: :destroy
 
+  #serialize :responses, Hash
+
   enum phases:  [
                   Phase::ConnectionPhase,
                   Phase::AssignRolesPhase,

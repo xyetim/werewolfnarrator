@@ -2,7 +2,7 @@ $ ->
   player_id = $("#player_id").attr("player_id")
 
   if window.location.pathname == "/game"
-    App.cable.subscriptions.create {
+    App.gameChannel = App.cable.subscriptions.create {
       channel: "GameChannel",
       player_id: player_id
       },

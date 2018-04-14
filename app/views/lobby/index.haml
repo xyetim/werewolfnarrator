@@ -1,17 +1,3 @@
-/ %h
-/   Werewolf Game Narrator
-/ %p
-/   = form_tag("/game", method: "get") do
-/     = label_tag("Start")
-/     = text_field_tag(:player_name)
-/     = submit_tag("Join")
-
-/ - if @game
-/   %div
-/     Game in Progress
-/     = form_tag("/game", method: "delete") do
-/       = submit_tag("Stop Game")
-
 .header
   .wrapper
     .title
@@ -19,7 +5,7 @@
 .fake_header_border
 
 .wrapper
-  .easy_center
+  .phase_content
     = form_tag("/game", method: "get") do
       = text_field_tag(:player_name)
       = submit_tag("Join")
