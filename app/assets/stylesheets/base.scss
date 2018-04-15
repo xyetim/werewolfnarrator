@@ -9,19 +9,23 @@ body {
 .header {
   background-color: $darker-color;
   height: fit-content;
+  min-height: 4vh;
 
   .wrapper {
     width: 90%;
     margin: 0 auto;
+    font-size: 12vw;
 
-    .title {
-      font-size: 12vw;
+    * {
       width: fit-content;
-      margin: auto;
+      margin: 0 auto;
     }
 
     .header_content {
-
+      .role_peak {
+        font-size: 8vw;
+        display: none;
+      }
     }
   }
 }

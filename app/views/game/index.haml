@@ -3,12 +3,11 @@
 
 .header
   .wrapper
-    .title
-      Werewolves
-
     .header_content
+      = render "header_content", locals: {game: @game, player: @player}
+
 .fake_header_border
 
 .wrapper
   .phase_content
-    = render @game.current_view(@player), locals: {game: @game, player: @player}
+    = render @player.current_view, locals: {game: @game, player: @player}

@@ -11,8 +11,7 @@ class Phase::AssignRolesPhase
   end
 
   def self.done?(game)
-    # wait for all players to confirm "ready"
-    false
+    game.players.all? {|player| player.response == "ready"}
   end
 
   def self.next_phase(game)

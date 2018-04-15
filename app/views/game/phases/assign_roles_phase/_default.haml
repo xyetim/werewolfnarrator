@@ -1,5 +1,11 @@
 .assign_roles_phase
   .text
     = "You are a #{@player.role}"
-  .ready.button
-    Ready
+  - if !@player.response
+    .ready.button
+      Ready
+  - else
+    .ready
+      Waiting for other players:
+      .count
+        = "#{@game.players.count{|player| player.response}}/#{@game.num_players}"
