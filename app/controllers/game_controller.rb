@@ -1,9 +1,16 @@
 class GameController < ApplicationController
   def index
     # Get running or make new Game
+
     @game = Game.first #always game 1
     if !@game
-      @game = Game.create(num_players: 3) # TODO make seperate game creation screen
+      roles = [
+                :werewolf,
+                :seer,
+                :twin,
+              ]
+
+      @game = Game.create(num_players: 3, roles: roles) # TODO make a seperate game creation screen
     end
 
     # Get existing player or create new player to the game

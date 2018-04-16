@@ -10,4 +10,4 @@
 
 .wrapper
   .phase_content
-    = render @player.current_view, locals: {game: @game, player: @player}
+    = @player.render_current_phase_view

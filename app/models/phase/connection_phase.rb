@@ -1,9 +1,11 @@
 class Phase::ConnectionPhase
-  def self.done?(game)
-    game.full
-  end
+  class << self
+    def done?(game)
+      game.full
+    end
 
-  def self.next_phase(game)
-    Phase::AssignRolesPhase
+    def next_phase(game)
+      Phase::AssignRolesPhase
+    end
   end
 end

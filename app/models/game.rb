@@ -13,11 +13,7 @@ class Game < ApplicationRecord
                   Phase::TestPhase,
                 ].freeze
 
-  # Villagers are filled automagically
-  ROLE_POOL = [
-                :werewolf,
-                :seer,
-              ]
+  serialize :roles, Array
 
   def current_phase
     Game.phases.key(self[:current_phase])
@@ -39,17 +35,29 @@ class Game < ApplicationRecord
   end
 
   def next_phase
-    self[:current_phase] = Game.phases[current_phase.next_phase(self)]
+    # TODO set players view to _defaul_night so they dont get stuck and no one can peak if slow
+
+    current_phase.try(:end, self)
+
+    # find first phase that is not skipped
+    loop do
+      self[:current_phase] = Game.phases[current_phase.next_phase(self)]
+
+      skip = current_phase.try(:skip?, self)
+      break if skip == nil ? true : !skip
+    end
+    save
+
+    current_phase.try(:before_start, self)
 
     # clear reponses
     players.each do |player|
       player.update(response: nil)
     end
 
-    current_phase.try(:start, self)
-    save
-
     update_players
+
+    current_phase.try(:start, self)
   end
 
   def update_players
