@@ -1,0 +1,10 @@
+%div
+  # todo find all werewolves
+  / -# binding.pry
+  / - werewolf_role_int = Player.role_to_enum(:werewolf)
+  / - if @game.players.where(role: werewolf_role_int) == @player # TODO and alive == true
+  /   - @game.players.reject(role: werewolf_role_int).each do |player|
+  /     .vote.button
+  /       = player.name
+  / - else
+    Pick your target!

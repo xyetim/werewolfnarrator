@@ -1,6 +1,9 @@
 .assign_roles_phase
   .text
-    = "You are a #{@player.role}"
+    .role
+      = "You are a #{@player.role}"
+  .show.button
+    Show Role
   - if !@player.response
     .ready.button
       Ready

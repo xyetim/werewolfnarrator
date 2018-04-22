@@ -35,17 +35,23 @@ class Game < ApplicationRecord
   end
 
   def next_phase
-    # TODO set players view to _defaul_night so they dont get stuck and no one can peak if slow
+    # set to nil and update players for in between phase
+    old_phase = current_phase
+    self[:current_phase] = nil
+    save
+    update_players
 
-    current_phase.try(:end, self)
+    old_phase.try(:end, self)
 
     # find first phase that is not skipped
+    new_phase = old_phase
     loop do
-      self[:current_phase] = Game.phases[current_phase.next_phase(self)]
+      new_phase = Game.phases[new_phase.next_phase(self)]
 
-      skip = current_phase.try(:skip?, self)
+      skip = new_phase.try(:skip?, self)
       break if skip == nil ? true : !skip
     end
+    self[:current_phase] = new_phase
     save
 
     current_phase.try(:before_start, self)

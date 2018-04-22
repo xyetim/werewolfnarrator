@@ -8,6 +8,12 @@ class Player < ApplicationRecord
                 :twin,
               ].freeze
 
+  class << self
+    def find_by_role(role)
+      #todo
+    end
+  end
+
   def role
     Player.roles.key(self[:role])
   end
@@ -22,8 +28,7 @@ class Player < ApplicationRecord
 
   # WARNING USING render IN THIS WAY IS VERY UNUSUAL. IT WOULD NORMALLY BE DONE IN THE CONTROLLER / CHANNEL
   def render_current_phase_view
-    phase_string = game.current_phase.name.demodulize.underscore
-
+    phase_string = game.current_phase ? game.current_phase.name.demodulize.underscore : "non-existent"
     views_order = [
                     "game/phases/default_night",
                     "game/phases/#{phase_string}/default",

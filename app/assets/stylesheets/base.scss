@@ -6,10 +6,21 @@ body {
   background-color: $primary-color;
 }
 
+* {
+   -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 .header {
   background-color: $darker-color;
   height: fit-content;
-  min-height: 4vh;
+  min-height: 6vh;
+  cursor: pointer;
 
   .wrapper {
     width: 90%;
@@ -24,7 +35,7 @@ body {
     .header_content {
       .role_peak {
         font-size: 8vw;
-        display: none;
+        visibility: hidden;
       }
     }
   }
@@ -46,15 +57,19 @@ body {
       width: fit-content;
       margin: 0 auto;
     }
-  }
-}
 
-.button {
-  background-color: $darker-color;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5em;
+    .button {
+      background-color: $darker-color;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5em;
+      cursor: pointer; //required for IOS devices
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
 
-  &:active {
-    background-color: $darker-highlight-color;
+      &:active {
+        background-color: $darker-highlight-color;
+      }
+    }
+
   }
 }

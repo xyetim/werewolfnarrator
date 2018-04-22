@@ -6,11 +6,11 @@ class Phase::TwinsPhase
 
     def before_start(game)
       system("say 'Everybody goes to sleep.'")
-      sleep 4
+      sleep 3
     end
 
     def start(game)
-      system("say 'The twins wake up, and find their counterpart. When they have found each other they press DONE.'")
+      system("say 'The twins wake up, and find their counterpart.'")
     end
 
     def done?(game)
