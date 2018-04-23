@@ -1,22 +1,12 @@
 class Player < ApplicationRecord
   belongs_to :game
 
-  enum roles: [
+  enum role: [
                 :villager,
                 :werewolf,
                 :seer,
                 :twin,
               ].freeze
-
-  class << self
-    def find_by_role(role)
-      #todo
-    end
-  end
-
-  def role
-    Player.roles.key(self[:role])
-  end
 
   def update_player
     ActionCable.server.broadcast "game_#{id}",

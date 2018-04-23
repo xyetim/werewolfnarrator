@@ -6,16 +6,6 @@ body {
   background-color: $primary-color;
 }
 
-* {
-   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
-}
-
 .header {
   background-color: $darker-color;
   height: fit-content;
@@ -35,7 +25,8 @@ body {
     .header_content {
       .role_peak {
         font-size: 8vw;
-        visibility: hidden;
+        //visibility: hidden;
+        display: none;
       }
     }
   }

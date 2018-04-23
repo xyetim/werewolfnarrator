@@ -4,7 +4,7 @@ class GameChannel < ApplicationCable::Channel
 
     # Update with latest game state
     player = Player.find(Integer(params[:player_id]))
-    Game.first.update_player(player)
+    player.update_player()
   end
 
   def receive(data)
