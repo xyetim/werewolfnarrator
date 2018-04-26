@@ -1,5 +1,5 @@
 .werewolves_phase
-  .choose
+  .choose_stage
     Pick your target!
     - if @game.get_werewolf_leader == @player
       - if @player.response == nil
@@ -7,12 +7,10 @@
           .vote.button{player_id: player.id}
             = player.name
 
-  .confirm_action
+  .confirm_stage
     You are about to kill
     %span.target_name
     .comfirm.button
       Kill
     .cancel.button
       Cancel
-
-

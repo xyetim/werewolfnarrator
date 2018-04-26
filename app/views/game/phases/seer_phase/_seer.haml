@@ -1,0 +1,27 @@
+.seer_phase
+  .choose_stage
+    - if @player.response == nil
+      Who are you spying on?
+      - @game.players.reject{|p| p.role == "seer"}.each do |player|
+        .vote.button{player_id: player.id}
+          = player.name
+
+  .confirm_stage
+    You are about to spy on
+    %span.target_name
+    .comfirm.button
+      Spy
+    .cancel.button
+      Cancel
+
+  .info_stage
+    - if @player.response
+      - target_player = @game.players.find(@player.response.to_i)
+      %span
+        = target_player.name
+      is a
+      %span
+        = target_player.role
+
+      .done.button
+        Done
