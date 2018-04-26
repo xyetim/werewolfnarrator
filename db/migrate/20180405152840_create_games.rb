@@ -4,6 +4,7 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.integer :num_players
       t.integer :current_phase, default: 0
       t.text :roles
+      t.text :night_targets
 
       t.timestamps
     end

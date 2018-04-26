@@ -1,9 +1,18 @@
 .werewolves_phase
-  %div
-    - if @game.players.werewolf.first == @player # TODO and alive == true
-      Pick your target!
-      - @game.players.reject{|p| p.role == "werewolf"}.each do |player|
-        .vote.button
-          = player.name
-    - else
-      Pick your target!
+  .choose
+    Pick your target!
+    - if @game.get_werewolf_leader == @player
+      - if @player.response == nil
+        - @game.players.reject{|p| p.role == "werewolf"}.each do |player|
+          .vote.button{player_id: player.id}
+            = player.name
+
+  .confirm_action
+    You are about to kill
+    %span.target_name
+    .comfirm.button
+      Kill
+    .cancel.button
+      Cancel
+
+

@@ -4,6 +4,7 @@ class Phase::TwinsPhase
       !game.roles.include?(:twin)
     end
 
+    # should this be here?
     def before_start(game)
       system("say 'Everybody goes to sleep.'")
       sleep 3
@@ -14,7 +15,7 @@ class Phase::TwinsPhase
     end
 
     def done?(game)
-      game.players.where(role: :twin).all? {|player| player.response == "ready"}
+      game.players.twin.all? {|player| player.response == "ready"}
     end
 
     def end(game)

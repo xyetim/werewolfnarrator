@@ -14,6 +14,7 @@ class Game < ApplicationRecord
                 ].freeze
 
   serialize :roles, Array
+  serialize :night_targets, Array
 
   def current_phase
     Game.phases.key(self[:current_phase])
@@ -70,5 +71,9 @@ class Game < ApplicationRecord
     players.each do |player|
       player.update_player
     end
+  end
+
+  def get_werewolf_leader
+    players.werewolf.first # TODO and alive == true
   end
 end
