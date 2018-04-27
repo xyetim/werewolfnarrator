@@ -7,7 +7,6 @@ class GameController < ApplicationController
       roles = [
                 :werewolf,
                 :seer,
-                :twin,
               ]
 
       @game = Game.create(num_players: 3, roles: roles) # TODO make a seperate game creation screen

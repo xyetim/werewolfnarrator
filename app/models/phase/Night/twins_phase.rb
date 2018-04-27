@@ -1,13 +1,7 @@
-class Phase::TwinsPhase
+class Phase::Night::TwinsPhase
   class << self
     def skip?(game)
       !game.roles.include?(:twin)
-    end
-
-    # should this be here?
-    def before_start(game)
-      system("say 'Everybody goes to sleep.'")
-      sleep 3
     end
 
     def start(game)
@@ -24,7 +18,7 @@ class Phase::TwinsPhase
     end
 
     def next_phase(game)
-      Phase::WerewolvesPhase
+      Phase::Night::SeerPhase
     end
   end
 end

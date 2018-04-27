@@ -15,7 +15,7 @@
       Cancel
 
   .info_stage
-    - if @player.response
+    - if @player.response && @player.response
       - target_player = @game.players.find(@player.response.to_i)
       %span
         = target_player.name

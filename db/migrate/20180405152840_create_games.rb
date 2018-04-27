@@ -5,6 +5,7 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.integer :current_phase, default: 0
       t.text :roles
       t.text :night_targets
+      t.boolean :in_phase_transition
 
       t.timestamps
     end

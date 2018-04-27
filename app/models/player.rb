@@ -18,9 +18,11 @@ class Player < ApplicationRecord
 
   # WARNING USING render IN THIS WAY IS VERY UNUSUAL. IT WOULD NORMALLY BE DONE IN THE CONTROLLER / CHANNEL
   def render_current_phase_view
-    phase_string = game.current_phase ? game.current_phase.name.demodulize.underscore : "non-existent"
+    phase_module = game.current_phase.name.deconstantize.split("::").last.underscore
+    phase_string = !game.in_phase_transition ? game.current_phase.name.demodulize.underscore : "non-existent"
+
     views_order = [
-                    "game/phases/default_night",
+                    "game/phases/default_#{phase_module}",
                     "game/phases/#{phase_string}/default",
                     "game/phases/#{phase_string}/#{role}",
                   ]
@@ -32,6 +34,9 @@ class Player < ApplicationRecord
       rescue ActionView::MissingTemplate
       end
     end
+
+    # check if a view has been found
+    raise ActionView::MissingTemplate unless phase_content
 
     phase_content
   end

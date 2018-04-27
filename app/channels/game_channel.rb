@@ -11,7 +11,8 @@ class GameChannel < ApplicationCable::Channel
     Player.find(Integer(params[:player_id])).update(response: data["response"])
 
     game = Game.first
-    game.update_players
-    game.phase_done?
+    if !game.phase_done?
+      game.update_players
+    end
   end
 end

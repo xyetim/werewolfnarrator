@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20180405152840) do
     t.integer "current_phase", default: 0
     t.text "roles"
     t.text "night_targets"
+    t.boolean "in_phase_transition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

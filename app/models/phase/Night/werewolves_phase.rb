@@ -1,4 +1,4 @@
-class Phase::WerewolvesPhase
+class Phase::Night::WerewolvesPhase
   class << self
     def start(game)
       system("say 'The werewolves wake up, and choose their target.'")
@@ -22,7 +22,7 @@ class Phase::WerewolvesPhase
     end
 
     def next_phase(game)
-      Phase::SeerPhase
+      Phase::Day::DayStartPhase
     end
   end
 end

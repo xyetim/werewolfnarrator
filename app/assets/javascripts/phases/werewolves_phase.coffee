@@ -2,9 +2,7 @@ target = this
 
 # On picking a target
 $(document).on "click", ".werewolves_phase .vote.button", (event) ->
-  player_id = $("#player_id").attr("player_id")
-
-  target.player_id = $(event.target).attr("player_id")
+  target.tplayer_id = $(event.target).attr("player_id")
 
   $(".target_name").text($(event.target).text())
 
@@ -13,7 +11,8 @@ $(document).on "click", ".werewolves_phase .vote.button", (event) ->
 
 # on confirm
 $(document).on "click", ".werewolves_phase .comfirm.button", (event) ->
-  App.gameChannel.send({player_id: player_id, response: target.player_id})
+  console.log(target.tplayer_id)
+  App.gameChannel.send({response: target.tplayer_id})
 
   $(".button").hide()
 

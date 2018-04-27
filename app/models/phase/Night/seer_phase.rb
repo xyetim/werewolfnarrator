@@ -1,5 +1,9 @@
-class Phase::SeerPhase
+class Phase::Night::SeerPhase
   class << self
+    def skip?(game)
+      !game.roles.include?(:seer)
+    end
+
     def start(game)
       system("say 'The seer wakes up, and chooses who she spies on this night.'")
       sleep 4
@@ -15,7 +19,7 @@ class Phase::SeerPhase
     end
 
     def next_phase(game)
-      Phase::MorningRevealPhase
+      Phase::Night::WerewolvesPhase
     end
   end
 end

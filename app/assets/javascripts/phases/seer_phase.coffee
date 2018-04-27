@@ -2,8 +2,6 @@ target = this
 
 # On picking a target
 $(document).on "click", ".seer_phase .vote.button", (event) ->
-  player_id = $("#player_id").attr("player_id")
-
   target.player_id = $(event.target).attr("player_id")
 
   $(".target_name").text($(event.target).text())
@@ -13,7 +11,7 @@ $(document).on "click", ".seer_phase .vote.button", (event) ->
 
 # on confirm
 $(document).on "click", ".seer_phase .comfirm.button", (event) ->
-  App.gameChannel.send({player_id: player_id, response: target.player_id})
+  App.gameChannel.send({response: target.player_id})
 
   $(".button").hide()
 
@@ -24,6 +22,6 @@ $(document).on "click", ".seer_phase .cancel.button", (event) ->
 
 # on confirm
 $(document).on "click", ".seer_phase .done.button", (event) ->
-  App.gameChannel.send({player_id: player_id, response: "ready"})
+  App.gameChannel.send({response: "ready"})
 
   $(".button").hide()

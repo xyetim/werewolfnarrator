@@ -1,2 +1,0 @@
-class Phase::MayorPhase
-end

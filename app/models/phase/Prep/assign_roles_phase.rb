@@ -1,4 +1,4 @@
-class Phase::AssignRolesPhase
+class Phase::Prep::AssignRolesPhase
   class << self
     def before_start(game)
       #random order
@@ -15,7 +15,7 @@ class Phase::AssignRolesPhase
     end
 
     def next_phase(game)
-      Phase::TwinsPhase
+      Phase::Night::NightStartPhase
     end
   end
 end
