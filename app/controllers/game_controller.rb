@@ -6,10 +6,13 @@ class GameController < ApplicationController
     if !@game
       roles = [
                 :werewolf,
+                :werewolf,
                 :seer,
+                :twin,
+                :twin,
               ]
 
-      @game = Game.create(num_players: 3, roles: roles) # TODO make a seperate game creation screen
+      @game = Game.create(num_players: 5, roles: roles) # TODO make a seperate game creation screen
     end
 
     # Get existing player or create new player to the game

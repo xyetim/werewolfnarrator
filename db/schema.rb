@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20180405152840) do
     t.text "roles"
     t.text "night_targets"
     t.boolean "in_phase_transition"
+    t.integer "night_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,6 +28,8 @@ ActiveRecord::Schema.define(version: 20180405152840) do
     t.integer "role"
     t.integer "game_id"
     t.string "response"
+    t.boolean "alive", default: true
+    t.boolean "mayor", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_players_on_game_id"

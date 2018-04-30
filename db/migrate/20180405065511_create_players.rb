@@ -5,6 +5,8 @@ class CreatePlayers < ActiveRecord::Migration[5.1]
       t.integer :role
       t.references :game
       t.string :response
+      t.boolean :alive, default: true
+      t.boolean :mayor, default: false
 
       t.timestamps
     end

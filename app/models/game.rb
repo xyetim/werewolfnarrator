@@ -11,7 +11,6 @@ class Game < ApplicationRecord
                   Phase::Day::DayStartPhase,
                   Phase::Day::MayorPhase,
                   Phase::Day::LynchPhase,
-                  #Phase::Day::TestPhase,
                 ].freeze
 
   serialize :roles, Array
@@ -76,7 +75,11 @@ class Game < ApplicationRecord
     end
   end
 
-  def get_werewolf_leader
-    players.werewolf.first # TODO and alive == true
+  def werewolf_leader
+    players.werewolf.select{ |player| player.is_werewolf_leader}.first
+  end
+
+  def game_guide
+    players.select{|player| player.is_game_guide}.first
   end
 end

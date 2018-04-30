@@ -29,7 +29,15 @@ Connection
 Assign Roles
    |
    V
- Twins +----- Lynch <--------- Mayor
-   |   |                         ^
-   V   V                         |
-    Seer ---> Werewolfves ---> Day Start
+ Twins +----- Lynch <--- Mayor <---- Day Start
+   |   |                                ^
+   V   V                                |
+  Night Start ------> Seer -------> Werewolfves
+
+
+# TODO Full explanation (per role)
+
+- TODO Intro use phone
+- Press done when done
+- Werewolves: Only 1 person inputs who is getting killed
+- Same for day phase

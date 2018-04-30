@@ -8,6 +8,17 @@ class Player < ApplicationRecord
                 :twin,
               ].freeze
 
+  def is_werewolf_leader
+    game.players.werewolf.where(alive: true).order(:id).first.id == id
+  end
+
+  def is_game_guide
+    frank = game.players.where(name: ["Frank", "frank"]).first
+    other = game.players.where(alive: true).order(:id).first
+    leader = frank || other
+    leader.id == id
+  end
+
   def update_player
     ActionCable.server.broadcast "game_#{id}",
     {
@@ -21,11 +32,19 @@ class Player < ApplicationRecord
     phase_module = game.current_phase.name.deconstantize.split("::").last.underscore
     phase_string = !game.in_phase_transition ? game.current_phase.name.demodulize.underscore : "non-existent"
 
-    views_order = [
-                    "game/phases/default_#{phase_module}",
-                    "game/phases/#{phase_string}/default",
-                    "game/phases/#{phase_string}/#{role}",
-                  ]
+    if alive
+      views_order = [
+                      "game/phases/default_#{phase_module}",
+                      "game/phases/#{phase_string}/default",
+                      "game/phases/#{phase_string}/#{role}",
+                    ]
+    else
+      views_order = [
+                      "game/phases/default_dead",
+                    ]
+    end
+    views_order.push("game/phases/#{phase_string}/game_guide") if is_game_guide # TODO and not mayor phase and while there is a mayor
+    views_order.push("game/phases/#{phase_string}/mayor") if mayor
 
     phase_content = nil
     views_order.each do |view|

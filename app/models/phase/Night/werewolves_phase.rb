@@ -1,22 +1,22 @@
 class Phase::Night::WerewolvesPhase
   class << self
+    def skip?(game)
+      !game.players.werewolf.where(alive: true).any?
+    end
+
     def start(game)
       system("say 'The werewolves wake up, and choose their target.'")
       sleep 4
     end
 
     def done?(game)
-      werewolf_response = game.get_werewolf_leader.response
-      if werewolf_response
-        target = game.players.find(werewolf_response.to_i)
-        game.night_targets.push(target)
-        true
-      else
-        false
-      end
+      !!game.werewolf_leader.response
     end
 
     def end(game)
+      target = game.players.find(game.werewolf_leader.response.to_i)
+      game.night_targets.push(target)
+
       system("say 'The werewolves go back to sleep.'")
       sleep 2
     end

@@ -1,0 +1,15 @@
+.lynch_phase
+  .choose_stage
+    Who is lynched this day?
+    - @game.players.where(alive: true).each do |player|
+      .vote.button{player_id: player.id}
+        = player.name
+
+  .confirm_stage
+    You are about to lynch
+    %span.target_name
+    And start the night.
+    .comfirm.button
+      Lynch
+    .cancel.button
+      Cancel

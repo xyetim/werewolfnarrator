@@ -1,0 +1,15 @@
+.mayor_phase
+  .choose_stage
+    Who is your successor?
+    - @game.players.where(alive: true).each do |player|
+      .vote.button{player_id: player.id}
+        = player.name
+
+  .confirm_stage
+    You are about to make
+    %span.target_name
+    mayor.
+    .comfirm.button
+      Ok
+    .cancel.button
+      Cancel

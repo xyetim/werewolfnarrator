@@ -1,7 +1,7 @@
 .werewolves_phase
   .choose_stage
     Pick your target!
-    - if @game.get_werewolf_leader == @player
+    - if @game.werewolf_leader == @player
       - if @player.response == nil
         - @game.players.reject{|p| p.role == "werewolf"}.each do |player|
           .vote.button{player_id: player.id}

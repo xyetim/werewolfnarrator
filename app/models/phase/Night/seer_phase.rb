@@ -1,7 +1,7 @@
 class Phase::Night::SeerPhase
   class << self
     def skip?(game)
-      !game.roles.include?(:seer)
+      !game.players.where(role: :seer, alive: true).any?
     end
 
     def start(game)
