@@ -29,22 +29,30 @@ class Player < ApplicationRecord
 
   # WARNING USING render IN THIS WAY IS VERY UNUSUAL. IT WOULD NORMALLY BE DONE IN THE CONTROLLER / CHANNEL
   def render_current_phase_view
+    reload
     phase_module = game.current_phase.name.deconstantize.split("::").last.underscore
     phase_string = !game.in_phase_transition ? game.current_phase.name.demodulize.underscore : "non-existent"
 
-    if alive
+    if game.won_by
       views_order = [
-                      "game/phases/default_#{phase_module}",
-                      "game/phases/#{phase_string}/default",
-                      "game/phases/#{phase_string}/#{role}",
+                      "game/phases/default_won",
                     ]
     else
-      views_order = [
-                      "game/phases/default_dead",
-                    ]
+      if alive
+        views_order = [
+                        "game/phases/default_#{phase_module}",
+                        "game/phases/#{phase_string}/default",
+                        "game/phases/#{phase_string}/#{role}",
+                      ]
+      else
+        views_order = [
+                        "game/phases/default_dead",
+                      ]
+      end
+      dead_mayor = (game.current_phase.name.demodulize == "MayorPhase") ? Phase::Day::MayorPhase.dead_mayor(game) : nil
+      views_order.push("game/phases/#{phase_string}/game_guide") if is_game_guide && !dead_mayor
+      views_order.push("game/phases/#{phase_string}/mayor") if mayor
     end
-    views_order.push("game/phases/#{phase_string}/game_guide") if is_game_guide # TODO and not mayor phase and while there is a mayor
-    views_order.push("game/phases/#{phase_string}/mayor") if mayor
 
     phase_content = nil
     views_order.each do |view|

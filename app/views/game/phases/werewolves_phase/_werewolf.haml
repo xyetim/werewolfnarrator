@@ -3,7 +3,7 @@
     Pick your target!
     - if @game.werewolf_leader == @player
       - if @player.response == nil
-        - @game.players.reject{|p| p.role == "werewolf"}.each do |player|
+        - @game.players.reject{|p| p.role == "werewolf" || !p.alive}.each do |player|
           .vote.button{player_id: player.id}
             = player.name
 

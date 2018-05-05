@@ -38,19 +38,25 @@ class Game < ApplicationRecord
     end
   end
 
+  def won_by
+    if full && !players.where(role: [:werewolf, nil], alive: true).any? # doesnt not work!!
+      "villagers"
+    elsif players.where(alive: true).all?{|pl| pl.role == :werewolf} # might not work
+      "werewolves"
+    end
+  end
+
   def next_phase
+    if won_by
+      update_players
+      return
+    end
+
     update(in_phase_transition: true)
     update_players
     current_phase.try(:end, self)
 
-    # find first phase that is not skipped
-    new_phase = current_phase
-    loop do
-      new_phase = new_phase.next_phase(self)
-
-      skip = new_phase.try(:skip?, self)
-      break if skip == nil ? true : !skip
-    end
+    new_phase = find_next_phase
 
     update(current_phase: Game.phases[new_phase])
 
@@ -67,6 +73,17 @@ class Game < ApplicationRecord
 
     current_phase.try(:start, self)
     phase_done?
+  end
+
+  def find_next_phase
+    new_phase = current_phase
+    loop do
+      new_phase = new_phase.next_phase(self)
+
+      skip = new_phase.try(:skip?, self)
+      break if skip == nil ? true : !skip
+    end
+    new_phase
   end
 
   def update_players

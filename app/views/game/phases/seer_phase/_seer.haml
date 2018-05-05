@@ -2,7 +2,7 @@
   .choose_stage
     - if @player.response == nil
       Who are you spying on?
-      - @game.players.reject{|p| p.role == "seer"}.each do |player|
+      - @game.players.reject{|p| p.role == "seer" || !p.alive}.each do |player|
         .vote.button{player_id: player.id}
           = player.name
 
