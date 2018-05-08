@@ -20,6 +20,7 @@ class Player < ApplicationRecord
   end
 
   def update_player
+    reload
     ActionCable.server.broadcast "game_#{id}",
     {
       header_content: render_header_view,
@@ -29,7 +30,6 @@ class Player < ApplicationRecord
 
   # WARNING USING render IN THIS WAY IS VERY UNUSUAL. IT WOULD NORMALLY BE DONE IN THE CONTROLLER / CHANNEL
   def render_current_phase_view
-    reload
     phase_module = game.current_phase.name.deconstantize.split("::").last.underscore
     phase_string = !game.in_phase_transition ? game.current_phase.name.demodulize.underscore : "non-existent"
 
