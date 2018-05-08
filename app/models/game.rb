@@ -51,6 +51,9 @@ class Game < ApplicationRecord
       update_players
       return
     end
+    if in_phase_transition
+      return
+    end
 
     update(in_phase_transition: true)
     update_players
