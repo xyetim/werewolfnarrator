@@ -40,28 +40,28 @@ class Game < ApplicationRecord
   end
 
   def won_by
+    players.reload
     if full && !players.where(alive: true, role: [:werewolf, nil]).any?
       "villagers"
-    elsif !players.where(alive: true).where.not(role: :werewolf).any?
+    elsif !players.where(alive: true).where.not(role: :werewolf).any? && !players.where(alive: true, role: nil).any?
       "werewolves"
     end
   end
 
   def next_phase
-    if won_by
-      update(current_phase: Game.phases[Phase::Day::EndPhase])
-      update_players
-      return
-    end
+    reload
     if in_phase_transition
       return
     end
-
     update(in_phase_transition: true)
     update_players
-    current_phase.try(:end, self)
 
-    new_phase = find_next_phase
+    if won_by
+      new_phase = Phase::Day::EndPhase
+    else
+      current_phase.try(:end, self)
+      new_phase = find_next_phase
+    end
 
     update(current_phase: Game.phases[new_phase])
 

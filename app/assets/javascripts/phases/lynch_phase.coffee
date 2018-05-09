@@ -11,7 +11,6 @@ $(document).on "click", ".lynch_phase .vote.button", (event) ->
 
 # on confirm
 $(document).on "click", ".lynch_phase .comfirm.button", (event) ->
-  console.log(target.tplayer_id)
   App.gameChannel.send({response: target.tplayer_id})
 
   $(".button").hide()

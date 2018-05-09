@@ -9,9 +9,13 @@ class Phase::Day::LynchPhase
     end
 
     def end(game)
-      target = game.players.find(game.game_guide.response.to_i)
-      target.update(alive: false)
-      game.update_players
+      response = game.game_guide.response
+
+      if response != "tied"
+        target = game.players.find(response.to_i)
+        target.update(alive: false)
+        game.update_players
+      end
     end
 
     def next_phase(game)

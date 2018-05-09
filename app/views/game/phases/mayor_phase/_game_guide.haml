@@ -4,6 +4,8 @@
     - @game.players.where(alive: true).each do |player|
       .vote.button{player_id: player.id}
         = player.name
+    .vote.button{player_id: "tied"}
+      Tied vote
 
   .confirm_stage
     You are about to make

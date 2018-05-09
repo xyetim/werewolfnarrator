@@ -51,4 +51,4 @@ Assign Roles
 - Change of double narration. Just continue as normal
 - If there is an error just try to play on if it still works.
 - You can peak at your role if you really forgot.
-
+- Tied votes looks weird

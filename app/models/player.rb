@@ -1,4 +1,6 @@
 class Player < ApplicationRecord
+  class NoViewError < StandardError; end
+
   belongs_to :game
 
   enum role: [
@@ -33,26 +35,21 @@ class Player < ApplicationRecord
     phase_module = game.current_phase.name.deconstantize.split("::").last.underscore
     phase_string = !game.in_phase_transition ? game.current_phase.name.demodulize.underscore : "non-existent"
 
-    if game.won_by
+    if alive
       views_order = [
-                      "game/phases/default_won",
+                      "game/phases/default_#{phase_module}",
+                      "game/phases/#{phase_string}/default",
+                      "game/phases/#{phase_string}/#{role}",
                     ]
     else
-      if alive
-        views_order = [
-                        "game/phases/default_#{phase_module}",
-                        "game/phases/#{phase_string}/default",
-                        "game/phases/#{phase_string}/#{role}",
-                      ]
-      else
-        views_order = [
-                        "game/phases/default_dead",
-                      ]
-      end
-      dead_mayor = (game.current_phase.name.demodulize == "MayorPhase") ? Phase::Day::MayorPhase.dead_mayor(game) : nil
-      views_order.push("game/phases/#{phase_string}/game_guide") if is_game_guide && !dead_mayor
-      views_order.push("game/phases/#{phase_string}/mayor") if mayor
+      views_order = [
+                      "game/phases/default_dead",
+                    ]
     end
+    dead_mayor = (game.current_phase.name.demodulize == "MayorPhase") ? Phase::Day::MayorPhase.dead_mayor(game) : nil
+    views_order.push("game/phases/#{phase_string}/game_guide") if is_game_guide && !dead_mayor
+    views_order.push("game/phases/#{phase_string}/mayor") if mayor
+    views_order.push("game/phases/#{phase_string}/default") if game.won_by
 
     phase_content = nil
     views_order.each do |view|
@@ -63,7 +60,7 @@ class Player < ApplicationRecord
     end
 
     # check if a view has been found
-    raise ActionView::MissingTemplate unless phase_content
+    raise NoViewError unless phase_content
 
     phase_content
   end

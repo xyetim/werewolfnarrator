@@ -23,15 +23,17 @@ class Phase::Day::MayorPhase
 
     def end(game)
       if !mayor_exists?(game)
-        target_id = game.game_guide.response.to_i
+        response = game.game_guide.response
       elsif mayor_died?(game)
         current_mayor = dead_mayor(game)
-        target_id = current_mayor.response.to_i
+        response = current_mayor.response
         current_mayor.update(mayor: false)
       end
 
-      target = game.players.find(target_id)
-      target.update(mayor: true)
+      if response != "tied"
+        target = game.players.find(response.to_i)
+        target.update(mayor: true)
+      end
     end
 
     def next_phase(game)
