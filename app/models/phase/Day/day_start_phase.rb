@@ -3,7 +3,6 @@ class Phase::Day::DayStartPhase
     def start(game)
       night_targets_names = game.night_targets.map{|p| p.name}.join(" and ")
       system("say 'Everybody wakes up, except for #{night_targets_names}.'")
-      sleep 1
 
       # Let players do this themselves?
       # night_targets.each do |player|

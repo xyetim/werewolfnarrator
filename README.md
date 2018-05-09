@@ -45,6 +45,7 @@ Assign Roles
 - Twins just wake up and press done once
 - Seer press who you wnat to spy on. And follow instruction. Dont forget to press done.
 - Werewolves. First discuss. At the end one of you has to input what you decided.
+- If you need to select you can scroll down.
 - During the day a helper (Me) will input who became mayor and who was lynched.
 - Then it will repeat
 - Change of double narration. Just continue as normal

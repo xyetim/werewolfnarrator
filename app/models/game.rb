@@ -11,6 +11,7 @@ class Game < ApplicationRecord
                   Phase::Day::DayStartPhase,
                   Phase::Day::MayorPhase,
                   Phase::Day::LynchPhase,
+                  Phase::Day::EndPhase,
                 ].freeze
 
   serialize :roles, Array
@@ -39,15 +40,16 @@ class Game < ApplicationRecord
   end
 
   def won_by
-    if full && !players.where(role: [:werewolf, nil], alive: true).any? # doesnt not work!!
+    if full && !players.where(alive: true, role: [:werewolf, nil]).any?
       "villagers"
-    elsif players.where(alive: true).all?{|pl| pl.role == :werewolf} # might not work
+    elsif !players.where(alive: true).where.not(role: :werewolf).any?
       "werewolves"
     end
   end
 
   def next_phase
     if won_by
+      update(current_phase: Game.phases[Phase::Day::EndPhase])
       update_players
       return
     end
