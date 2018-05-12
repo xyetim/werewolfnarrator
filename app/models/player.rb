@@ -1,5 +1,7 @@
 class Player < ApplicationRecord
   class NoViewError < StandardError; end
+  validates :name, presence: true, length: { minimum: 2 }
+  #validate :unique_player_name #TODO
 
   belongs_to :game
 
@@ -68,5 +70,12 @@ class Player < ApplicationRecord
   # WARNING USING render IN THIS WAY IS VERY UNUSUAL. IT WOULD NORMALLY BE DONE IN THE CONTROLLER / CHANNEL
   def render_header_view
     ApplicationController.new.render_to_string(partial: "game/header_content", layout: false, locals: {"@game": game, "@player": self})
+  end
+
+  private
+
+  # TODO
+  def unique_player_name
+    game.players.where(name: name).any?
   end
 end

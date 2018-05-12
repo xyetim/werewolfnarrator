@@ -1,6 +1,9 @@
 class Phase::Day::DayStartPhase
   class << self
     def start(game)
+      # Stop night music
+      Process.kill("INT", game.music_pid)
+
       night_targets_names = game.night_targets.map{|p| p.name}.join(" and ")
       system("say 'Everybody wakes up, except for #{night_targets_names}.'")
 

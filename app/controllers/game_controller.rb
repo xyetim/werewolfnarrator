@@ -12,7 +12,7 @@ class GameController < ApplicationController
                 :twin,
               ]
 
-      @game = Game.create(num_players: 5, roles: roles) # TODO make a seperate game creation screen
+      @game = Game.create(num_players: 9, roles: roles) # TODO make a seperate game creation screen
     end
 
     # Get existing player or create new player to the game
@@ -21,7 +21,12 @@ class GameController < ApplicationController
     if !@player
       if !@game.full
         puts "$$ New Player" + params[:player_name]
-        @player = @game.players.create(name: params[:player_name])
+        @player = Player.create(name: params[:player_name])
+        if @player.valid?
+          @game.players.push(@player)
+        else
+          render inline: "Name is not unique or not longer than 2 characters"
+        end
       else
         render inline: "Sorry, this game is already full"
       end

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180405152840) do
     t.text "night_targets"
     t.boolean "in_phase_transition"
     t.integer "night_count", default: 0
+    t.integer "music_pid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

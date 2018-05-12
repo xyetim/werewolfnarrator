@@ -19,7 +19,7 @@ class Phase::Day::LynchPhase
     end
 
     def next_phase(game)
-      Phase::Night::NightStartPhase
+      Phase::Day::SecondMayorPhase
     end
   end
 end

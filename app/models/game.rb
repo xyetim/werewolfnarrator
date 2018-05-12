@@ -11,6 +11,7 @@ class Game < ApplicationRecord
                   Phase::Day::DayStartPhase,
                   Phase::Day::MayorPhase,
                   Phase::Day::LynchPhase,
+                  Phase::Day::SecondMayorPhase,
                   Phase::Day::EndPhase,
                 ].freeze
 
