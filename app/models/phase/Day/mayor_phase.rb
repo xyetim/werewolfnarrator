@@ -6,7 +6,7 @@ class Phase::Day::MayorPhase
 
     def start(game)
       if !mayor_exists?(game)
-        system("say 'First, discuss who should be the first mayor of this town.'")
+        system("say 'Discuss who should be the first mayor of this town.'")
       elsif mayor_died?(game)
         mayor = dead_mayor(game)
         system("say '#{mayor.name} was mayor and chooses their successor'")

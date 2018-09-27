@@ -1,10 +1,10 @@
 Rails.application.configure do
-  config.numPlayers = 7
+  config.numPlayers = 4
   config.roles = [
     :werewolf,
-    :werewolf,
+    #:werewolf,
     :seer,
-    :twin,
-    :twin,
+    #:twin,
+    #:twin,
   ]
 end

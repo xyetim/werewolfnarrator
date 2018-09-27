@@ -15,6 +15,8 @@ class Phase::Day::LynchPhase
         target = game.players.find(response.to_i)
         target.update(alive: false)
         game.update_players
+        system("say '" + target.name + "Is lynched, what was your role?'")
+        sleep 10
       end
     end
 
