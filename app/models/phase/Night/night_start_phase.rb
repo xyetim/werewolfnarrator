@@ -10,9 +10,9 @@ class Phase::Night::NightStartPhase
       # Start night sound loop
       pid = fork do
         Signal.trap("INT") { system("killall afplay"); exit}
-        loop do
-          system("afplay #{Rails.root}/app/assets/audios/night_cut.mp3 -v 0.3")
-        end
+        # loop do
+        #   system("afplay #{Rails.root}/app/assets/audios/night_cut.mp3 -v 0.3")
+        # end
       end
 
       game.update(music_pid: pid)

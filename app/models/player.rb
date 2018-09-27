@@ -1,6 +1,6 @@
 class Player < ApplicationRecord
   class NoViewError < StandardError; end
-  validates :name, presence: true, length: { minimum: 2 }
+  #validates :name, presence: true, length: { minimum: 2 }
   #validate :unique_player_name #TODO
 
   belongs_to :game

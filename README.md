@@ -52,3 +52,4 @@ Assign Roles
 - If there is an error just try to play on if it still works.
 - You can peak at your role if you really forgot.
 - Tied votes looks weird
+- Everybody keep phone in your hand
