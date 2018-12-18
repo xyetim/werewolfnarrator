@@ -7,3 +7,4 @@ This is a second iteration with a new core setup:
 - Only serve data in JSON format
 - Serve this JSON format through the action cable too
 - Use a the finite_machine to keep track of the game progress and trasitions !? (How to handle skipping states?)
+- Make some tests!
