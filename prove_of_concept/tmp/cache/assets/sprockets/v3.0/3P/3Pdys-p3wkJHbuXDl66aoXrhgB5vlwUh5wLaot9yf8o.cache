@@ -1,0 +1,26 @@
+I"¨(function() {
+  var target;
+
+  target = this;
+
+  $(document).on("click", ".second_mayor_phase .vote.button", function(event) {
+    target.tplayer_id = $(event.target).attr("player_id");
+    $(".target_name").text($(event.target).text());
+    $(".choose_stage").hide();
+    return $(".confirm_stage").show();
+  });
+
+  $(document).on("click", ".second_mayor_phase .comfirm.button", function(event) {
+    App.gameChannel.send({
+      response: target.tplayer_id
+    });
+    return $(".button").hide();
+  });
+
+  $(document).on("click", ".second_mayor_phase .cancel.button", function(event) {
+    $(".choose_stage").show();
+    return $(".confirm_stage").hide();
+  });
+
+}).call(this);
+:ET

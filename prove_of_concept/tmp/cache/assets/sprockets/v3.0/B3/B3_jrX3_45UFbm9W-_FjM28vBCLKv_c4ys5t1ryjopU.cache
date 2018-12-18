@@ -1,0 +1,33 @@
+I"8(function() {
+  var target;
+
+  target = this;
+
+  $(document).on("click", ".seer_phase .vote.button", function(event) {
+    target.player_id = $(event.target).attr("player_id");
+    $(".target_name").text($(event.target).text());
+    $(".choose_stage").hide();
+    return $(".confirm_stage").show();
+  });
+
+  $(document).on("click", ".seer_phase .comfirm.button", function(event) {
+    App.gameChannel.send({
+      response: target.player_id
+    });
+    return $(".button").hide();
+  });
+
+  $(document).on("click", ".seer_phase .cancel.button", function(event) {
+    $(".choose_stage").show();
+    return $(".confirm_stage").hide();
+  });
+
+  $(document).on("click", ".seer_phase .done.button", function(event) {
+    App.gameChannel.send({
+      response: "ready"
+    });
+    return $(".button").hide();
+  });
+
+}).call(this);
+:ET

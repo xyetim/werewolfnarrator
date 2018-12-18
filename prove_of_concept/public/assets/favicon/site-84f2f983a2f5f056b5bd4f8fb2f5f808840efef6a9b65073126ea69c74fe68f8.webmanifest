@@ -1,0 +1,14 @@
+{
+    "name": "Werewolf Narrator",
+    "short_name": "Werewolf Narrator",
+    "icons": [
+        {
+            "src": "/assets/favicon/android-chrome-192x192-d7bf6155ff15aa50e676d8fdeeb3771ae294b7d6b3649f9b14c3b6650b2616d3.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#8a5757",
+    "background_color": "#8a5757",
+    "display": "standalone"
+}

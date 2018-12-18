@@ -1,0 +1,12 @@
+I"(function() {
+  $(document).on("click", ".twins_phase .ready.button", function() {
+    var player_id;
+    player_id = $("#player_id").attr("player_id");
+    App.gameChannel.send({
+      response: "ready"
+    });
+    return $(".ready.button").hide();
+  });
+
+}).call(this);
+:ET

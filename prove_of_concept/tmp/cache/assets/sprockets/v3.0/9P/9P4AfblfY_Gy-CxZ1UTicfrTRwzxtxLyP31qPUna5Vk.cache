@@ -1,0 +1,26 @@
+I"½(function() {
+  $(document).on("mousedown", ".assign_roles_phase .show.button", function() {
+    return $('.role').css('visibility', 'visible');
+  });
+
+  $(document).on("touchstart", ".assign_roles_phase .show.button", function() {
+    return $('.role').css('visibility', 'visible');
+  });
+
+  $(document).on("mouseup", "body", function() {
+    return $('.role').css('visibility', 'hidden');
+  });
+
+  $(document).on("touchend", "body", function() {
+    return $('.role').css('visibility', 'hidden');
+  });
+
+  $(document).on("click", ".assign_roles_phase .ready.button", function() {
+    App.gameChannel.send({
+      response: "ready"
+    });
+    return $(".ready.button").hide();
+  });
+
+}).call(this);
+:ET

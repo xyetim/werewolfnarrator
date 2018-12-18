@@ -1,0 +1,32 @@
+I"™(function() {
+  $(function() {
+    var player_id;
+    player_id = $("#player_id").attr("player_id");
+    if (window.location.pathname === "/game") {
+      return App.gameChannel = App.cable.subscriptions.create({
+        channel: "GameChannel",
+        player_id: player_id
+      }, {
+        rejected: function() {
+          return console.warn("WEBSOCKET: rejected");
+        },
+        disconnected: function() {
+          return console.warn("WEBSOCKET: disconnected");
+        },
+        connected: function() {
+          return console.log("WEBSOCKET: connected with id: " + player_id);
+        },
+        received: function(data) {
+          if (data["phase_content"]) {
+            $(".phase_content").html(data["phase_content"]);
+          }
+          if (data["header_content"]) {
+            return $(".header_content").html(data["header_content"]);
+          }
+        }
+      });
+    }
+  });
+
+}).call(this);
+:ET

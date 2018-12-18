@@ -1,0 +1,19 @@
+I"•(function() {
+  $(document).on("mousedown", ".header", function() {
+    return $('.role_peak').show();
+  });
+
+  $(document).on("touchstart", ".header", function() {
+    return $('.role_peak').show();
+  });
+
+  $(document).on("mouseup", "body", function() {
+    return $('.role_peak').hide();
+  });
+
+  $(document).on("touchend", "body", function() {
+    return $('.role_peak').hide();
+  });
+
+}).call(this);
+:ET
