@@ -48,6 +48,7 @@ class Player < ApplicationRecord
                       "game/phases/default_dead",
                     ]
     end
+
     dead_mayor = (game.current_phase.name.demodulize == "MayorPhase") ? Phase::Day::MayorPhase.dead_mayor(game) : nil
     views_order.push("game/phases/#{phase_string}/game_guide") if is_game_guide && !dead_mayor
     views_order.push("game/phases/#{phase_string}/mayor") if mayor

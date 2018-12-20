@@ -51,9 +51,11 @@ class Game < ApplicationRecord
 
   def next_phase
     reload
+
     if in_phase_transition
       return
     end
+
     update(in_phase_transition: true)
     update_players
 
