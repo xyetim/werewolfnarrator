@@ -10,19 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_20_142242) do
+ActiveRecord::Schema.define(version: 2018_12_27_175137) do
 
   create_table "games", force: :cascade do |t|
+    t.integer "player_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["player_group_id"], name: "index_games_on_player_group_id"
+  end
+
+  create_table "player_groups", force: :cascade do |t|
+    t.integer "games_id"
+    t.string "public_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["games_id"], name: "index_player_groups_on_games_id"
   end
 
   create_table "players", force: :cascade do |t|
     t.integer "game_id"
+    t.integer "player_group_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_players_on_game_id"
+    t.index ["player_group_id"], name: "index_players_on_player_group_id"
   end
 
 end

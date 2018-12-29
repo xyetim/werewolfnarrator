@@ -3,8 +3,9 @@ require 'test_helper'
 class PlayerTest < ActiveSupport::TestCase
   describe "without name" do
     subject do
-      g = Game.create
-      g.players.create()
+      pg = PlayerGroup.create
+      g = pg.games.create
+      g.players.create
     end
 
     it "should not be valid" do

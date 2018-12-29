@@ -2,10 +2,11 @@ require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase
   subject do
-    x = Game.create
-    x.players.create(name: "Frank")
-    x.players.create(name: "Albert")
-    x
+    pg = PlayerGroup.create
+    g = pg.games.create
+    g.players.create(name: "Frank")
+    g.players.create(name: "Albert")
+    g
   end
 
   it "should have correct number of players" do
