@@ -15,12 +15,12 @@ This app acts as the gamemaster/narrator for the game Werewolves of millers holl
 
 - Twins just wake up first night and press done once
 
-- Seer press who you wnat to spy on. And follow instruction. Dont forget to press done.
+- Seer press who you want to spy on. And follow instruction. Dont forget to press done.
   - If you need to select you can scroll down.
 
 - Werewolves. First discuss. At the end only one of you has to input what you decided.
 
-- During the day a helper (Me) will input who became mayor and who was lynched.
+- During the day a helper (I) will input who became mayor and who was lynched.
 
 - If there is an error just try to play on if it still works.
 - Everybody keep phone in your hand to make minimal noises.
@@ -48,6 +48,7 @@ The master image can be found in app/assets/images.
 Phases are skipped when no action is required by anyone.
 (Example: No Twins in the game, No new mayer needs to be chosen)
 
+"""
    |
    V
 Connection
@@ -60,3 +61,4 @@ Assign Roles
    |    |                                ^
    V    V                                |
   Night Start ------> Seer -------> Werewolfves
+"""
