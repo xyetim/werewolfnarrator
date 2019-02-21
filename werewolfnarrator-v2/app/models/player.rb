@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
   belongs_to :game, optional: true
+  belongs_to :player_group
   validates :name, presence: true
 
   # Roles as enum field (as it was)

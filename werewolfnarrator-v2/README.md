@@ -1,6 +1,8 @@
 # README Werewolf narrator v2
 
-This app acts as the gamemaster/narrator for the game Werewolves of millers hollow. Also known as "Weerwolven van Wakkerdam" in Dutch.
+This app acts as the gamemaster/narrator for the game Werewolves of millers hollow.
+Also known as "Weerwolven van Wakkerdam" in Dutch.
+
 This is a second iteration with a new core setup:
 - Seperate layout from data
 - Use PWA cache to speed up layouts and images
