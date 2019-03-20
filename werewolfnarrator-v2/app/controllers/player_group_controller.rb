@@ -1,7 +1,6 @@
 class PlayerGroupController < ApplicationController
-
   def index
-    # TODO restrict field to be send to the front end
+    # TODO restrict fields to be send to the front end
     render json: PlayerGroup.all.to_json
   end
 
